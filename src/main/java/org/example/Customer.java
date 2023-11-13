@@ -55,6 +55,7 @@ public class Customer {
     }
 
 
+    // This method will craete a new customer
     public void newAccount() {
 
         System.out.println("Enter your ID (must be 5 digits): ");
@@ -80,6 +81,46 @@ public class Customer {
         }
 
         System.out.println("Account is created!\n");
+    }
+
+    // This method will check the customer if exist in Database
+    public boolean check() {
+
+        System.out.print("Enter your ID: ");
+        ID = in.nextInt();
+
+        try {
+            // query
+            conn = DBConnection.getInstance().getConnection();
+            stat = conn.createStatement();
+
+            //*************************************************************
+            //Login Table
+            query = "Select * from customer";
+            result = stat.executeQuery(query);
+
+            boolean found = false;
+            while (result.next()) {
+
+                if (ID == result.getInt("ID")) {
+                    ID = result.getInt("ID");
+                    name = result.getString("Name");
+                    walletNumber = result.getInt("WalletNumber");
+                    walletBalance = result.getDouble("WalletBalance");
+                    found = true;
+                    break;
+                }
+            }//End of while
+
+            if (!found) {
+                System.out.println("Your ID is not correct!!!");
+                return false;
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return true;
     }
 
 }
