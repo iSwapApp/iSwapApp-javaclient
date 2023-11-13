@@ -6,4 +6,6 @@ public class Customer {
     private String name;
     private int walletNumber;
     private double walletBalance;
+
+    //Hello
 }
