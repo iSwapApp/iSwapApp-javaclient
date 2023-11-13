@@ -1,5 +1,7 @@
 package org.example;
 
+import java.util.Scanner;
+
 public class Card {
     Customer c1 = new Customer();
 
@@ -53,6 +55,22 @@ public class Card {
     public void setCardValidity(boolean cardValidity) {
         this.cardValidity = cardValidity;
     }
+    public void payCards() {
+        Scanner in = new Scanner(System.in);
+        System.out.println("What card do you want: ");
+        System.out.println("Amazon: Price 100$");
+        System.out.println("Noon: Price 200$");
 
+        byte choice = in.nextByte();
+
+        if (choice == 1) {
+            c1.setWalletBalance(c1.getWalletBalance() - 100);
+            System.out.println("Done");
+
+        } else if (choice == 2) {
+            c1.setWalletBalance(c1.getWalletBalance() - 200);
+            System.out.println("Done");
+        }
+    }
 
 }
