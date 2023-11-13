@@ -65,5 +65,40 @@ public class App
         } while (choice != 4);
 
     }
+    public static void customerScreen(Customer c1, Card cd1, byte choice, Scanner in) {
+
+        System.out.println("Welcome " + c1.getName());
+
+        while (choice != 4) {
+            System.out.println("******************************");
+            System.out.println("********** iSwap App *********");
+            System.out.println("******************************");
+            System.out.println("| 1.Pay card                 |");
+            System.out.println("| 2.Exchange card            |");
+            System.out.println("| 3.Deposit to wallet        |");
+            System.out.println("| 4.log out                  |");
+            System.out.println("******************************");
+            System.out.println("Enter your choice: ");
+            choice = in.nextByte();
+
+            if (choice == 1) {
+                System.out.println("Your balance is " + c1.getWalletBalance());
+                cd1.payCards();
+
+            } else if (choice == 2) {
+
+            } else if (choice == 3) {
+                System.out.println("Enter how many do you want to deposit: ");
+                int depo = in.nextInt();
+                c1.setWalletBalance(depo);
+
+            } else if (choice == 4) {
+                System.out.println("Good Bye.");
+
+            } else {
+                System.out.println("You enter invalid choice try again!");
+            }
+        }
+    }
 
 }
