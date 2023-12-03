@@ -4,10 +4,7 @@ import java.util.Scanner;
 
 public class ExchangingCard {
 
-    public void printEx(Card cd1){
-
-
-
+    public void printEx(Card cd1) {
 
 
     }

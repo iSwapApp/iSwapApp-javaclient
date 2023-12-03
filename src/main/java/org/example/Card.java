@@ -35,11 +35,11 @@ public class Card {
     }
 
     // Getter and Setter Methods
-    public String getCardName() {
+    public String getBrand() {
         return brand;
     }
 
-    public void setCardName(String cardName) {
+    public void setBrand(String brand) {
         this.brand = brand;
     }
 
@@ -80,7 +80,7 @@ public class Card {
 
     @Override
     public String toString() {
-        return  "\nBrand: " + brand +
+        return "\nBrand: " + brand +
                 "\nCard Value: " + cardValue +
                 "\nCard Code: " + cardCode +
                 "\nCard Validity: " + cardValidity + "\n";
@@ -98,10 +98,12 @@ public class Card {
             query = "Select * from card";
             result = stat.executeQuery(query);
 
+            byte count = 0;
             while (result.next()) {
                 if (ID == result.getInt("ID")) {
                     Card cd1 = new Card(result.getString("Brand"), result.getDouble("CardValue"), result.getString("CardCode"), result.getString("CardValidity"));
                     cards.add(cd1);
+                    System.out.print(++count);
                     System.out.println(cd1.toString());
                 }
             }//End of while

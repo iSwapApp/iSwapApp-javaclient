@@ -79,7 +79,6 @@ public class Customer {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         System.out.println("Account is created!\n");
     }
 
@@ -122,12 +121,12 @@ public class Customer {
         }
         return true;
     }
-    public void printInfo(){
-        System.out.println("ID: "+this.ID);
-        System.out.println("Name: "+this.name);
-        System.out.println("Wallet Number: "+this.walletNumber);
-        System.out.println("Balance: "+walletBalance);
+
+    public void printInfo() {
+        System.out.println("ID: " + this.ID);
+        System.out.println("Name: " + this.name);
+        System.out.println("Wallet Number: " + this.walletNumber);
+        System.out.println("Balance: " + this.walletBalance);
         System.out.println();
     }
-
 }
