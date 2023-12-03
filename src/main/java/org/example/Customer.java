@@ -122,5 +122,12 @@ public class Customer {
         }
         return true;
     }
+    public void printInfo(){
+        System.out.println("ID: "+this.ID);
+        System.out.println("Name: "+this.name);
+        System.out.println("Wallet Number: "+this.walletNumber);
+        System.out.println("Balance: "+walletBalance);
+        System.out.println();
+    }
 
 }
