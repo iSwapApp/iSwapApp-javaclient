@@ -1,10 +1,19 @@
 package org.example;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Scanner;
 
 public class Card {
     Customer c1 = new Customer();
 
+    //Query(SQL)
+    String query;
+    Connection conn;
+    Statement stat;
+    ResultSet result;
     private String brand;
     private double cardValue;
     private String cardCode;
@@ -55,26 +64,14 @@ public class Card {
     public void setCardValidity(boolean cardValidity) {
         this.cardValidity = cardValidity;
     }
-    public void payCards() {
-        Scanner in = new Scanner(System.in);
-        System.out.println("What card do you want: ");
-        System.out.println("Amazon: Price 100$");
-        System.out.println("Noon: Price 200$");
 
-        byte choice = in.nextByte();
+    public void payCards(){};
 
-        if (choice == 1) {
-            c1.setWalletBalance(c1.getWalletBalance() - 100);
-            System.out.println("Done");
+    public void printMyCard(){
 
-        } else if (choice == 2) {
-            c1.setWalletBalance(c1.getWalletBalance() - 200);
-            System.out.println("Done");
-        }
+        
+
     }
-
-
-
 
 
 }

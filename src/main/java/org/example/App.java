@@ -61,33 +61,36 @@ public class App
 
         System.out.println("Welcome " + c1.getName());
 
-        while (choice != 5) {
+        while (choice != 6) {
             System.out.println("******************************");
             System.out.println("********** iSwap App *********");
             System.out.println("******************************");
             System.out.println("| 1.Show Information         |");
-            System.out.println("| 2.Pay Card                 |");
-            System.out.println("| 3.Exchange Card            |");
-            System.out.println("| 4.Deposit to Wallet        |");
-            System.out.println("| 5.Log out                  |");
+            System.out.println("| 2.Show My Cards            |");
+            System.out.println("| 3.Pay Card                 |");
+            System.out.println("| 4.Exchange Card            |");
+            System.out.println("| 5.Deposit to Wallet        |");
+            System.out.println("| 6.Log out                  |");
             System.out.println("******************************");
             System.out.println("Enter your choice: ");
             choice = in.nextByte();
 
             if (choice == 1){
                 c1.printInfo();
-            } else if (choice == 2) {
-                System.out.println("Your balance is " + c1.getWalletBalance());
-                cd1.payCards();
 
+            } else if (choice == 2) {
+                
             } else if (choice == 3) {
+                System.out.println("Done");
 
             } else if (choice == 4) {
+
+            } else if (choice == 5) {
                 System.out.println("Enter how many do you want to deposit: ");
                 int depo = in.nextInt();
                 c1.setWalletBalance(depo);
 
-            } else if (choice == 5) {
+            } else if (choice == 6) {
                 System.out.println("Good Bye.");
 
             } else {
