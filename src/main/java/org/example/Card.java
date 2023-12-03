@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Card {
@@ -17,14 +18,15 @@ public class Card {
     private String brand;
     private double cardValue;
     private String cardCode;
-    private boolean cardValidity;
+    private String cardValidity;
+    private CardState state;
 
     public Card() {
-
+        this.state = new ActiveCardState();
     }
 
     // Constructor
-    public Card(String brand, double cardValue, String cardNumber, boolean cardValidity) {
+    public Card(String brand, double cardValue, String cardNumber, String cardValidity) {
         this.brand = brand;
         this.cardValue = cardValue;
         this.cardCode = cardNumber;
@@ -57,21 +59,61 @@ public class Card {
         this.cardCode = cardCode;
     }
 
-    public boolean isCardValidity() {
+    public String isCardValidity() {
         return cardValidity;
     }
 
-    public void setCardValidity(boolean cardValidity) {
+    public void setCardValidity(String cardValidity) {
         this.cardValidity = cardValidity;
     }
 
-    public void payCards(){};
-
-    public void printMyCard(){
-
-        
-
+    public void setStat(CardState stat) {
+        this.state = state;
     }
 
+    public void hanle() {
+        this.state.handle(this);
+    }
+
+    public void payCards() {
+    }
+
+    @Override
+    public String toString() {
+        return  "\nBrand: " + brand +
+                "\nCard Value: " + cardValue +
+                "\nCard Code: " + cardCode +
+                "\nCard Validity: " + cardValidity + "\n";
+    }
+
+    public ArrayList<Card> updateCard(int ID) {
+
+        ArrayList<Card> cards = new ArrayList<>();
+        try {
+            // query
+            conn = DBConnection.getInstance().getConnection();
+            stat = conn.createStatement();
+
+            //Card Table
+            query = "Select * from card";
+            result = stat.executeQuery(query);
+
+            while (result.next()) {
+                if (ID == result.getInt("ID")) {
+                    Card cd1 = new Card(result.getString("Brand"), result.getDouble("CardValue"), result.getString("CardCode"), result.getString("CardValidity"));
+                    cards.add(cd1);
+                    System.out.println(cd1.toString());
+                }
+            }//End of while
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return cards;
+    }
+
+    public void returnPaid() {
+
+
+    }
 
 }

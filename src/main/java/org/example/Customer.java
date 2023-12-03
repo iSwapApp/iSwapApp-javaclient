@@ -22,7 +22,7 @@ public class Customer {
 
     // Getter Methods
     public int getID() {
-        return ID;
+        return this.ID;
     }
 
     public String getName() {

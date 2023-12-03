@@ -13,6 +13,7 @@ public class App
     {
         Scanner in = new Scanner(System.in);
         Customer c1 = new Customer();
+        ExchangingCard ec = new ExchangingCard();
         Card cd1 = new Card();
 /*        try {
             DBConnection db1 = DBConnection.getInstance();
@@ -44,7 +45,7 @@ public class App
 
                 boolean ch = c1.check();
                 if (ch == true){
-                    customerScreen(c1, cd1, choice, in);
+                    customerScreen(c1, cd1, choice, in, ec);
                 }
 
             }  else if (choice == 2) {
@@ -57,7 +58,7 @@ public class App
         } while (choice != 3);
 
     }
-    public static void customerScreen(Customer c1, Card cd1, byte choice, Scanner in) {
+    public static void customerScreen(Customer c1, Card cd1, byte choice, Scanner in, ExchangingCard ec) {
 
         System.out.println("Welcome " + c1.getName());
 
@@ -79,11 +80,17 @@ public class App
                 c1.printInfo();
 
             } else if (choice == 2) {
+                cd1.updateCard(c1.getID());
                 
             } else if (choice == 3) {
                 System.out.println("Done");
 
             } else if (choice == 4) {
+                cd1.hanle();
+                ec.printEx(cd1);
+
+                cd1.setStat(new NotActiveCardState());
+                cd1.hanle();
 
             } else if (choice == 5) {
                 System.out.println("Enter how many do you want to deposit: ");
