@@ -37,7 +37,7 @@ public class App {
     public static void customerScreen(Customer c1, Card cd1, byte choice, Scanner in, ExchangingCard order) {
 
         System.out.println("Welcome " + c1.getName());
-        while (choice != 5) {
+        while (choice != 6) {
             System.out.println("******************************");
             System.out.println("********** iSwap App *********");
             System.out.println("******************************");
@@ -45,24 +45,23 @@ public class App {
             System.out.println("| 2.Show My Cards            |");
             System.out.println("| 3.Create Order             |");
             System.out.println("| 4.Exchange Card            |");
-            System.out.println("| 5.Log out                  |");
+            System.out.println("| 5.Refund From the Card     |");
+            System.out.println("| 6.Log out                  |");
             System.out.println("******************************");
             System.out.println("Enter your choice: ");
             choice = in.nextByte();
 
             if (choice == 1) {
                 c1.printInfo();
-
             } else if (choice == 2) {
                 cd1.updateCard(c1.getID());
-
             } else if (choice == 3) {
                 order.createOrder(c1.getID());
-
             } else if (choice == 4) {
                 order.showOrderList(c1.getID());
-
             } else if (choice == 5) {
+                cd1.refund(c1.getID());
+            } else if (choice == 6) {
                 System.out.println("Good Bye.");
             } else {
                 System.out.println("You enter invalid choice try again!");

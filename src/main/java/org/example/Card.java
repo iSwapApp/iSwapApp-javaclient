@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Card {
+
+    Scanner in = new Scanner(System.in);
     Customer c1 = new Customer();
 
     //Query(SQL)
@@ -113,9 +115,35 @@ public class Card {
         return cards;
     }
 
-    public void returnPaid() {
+    public void refund(int ID) {
+        try {
+            // query
+            conn = DBConnection.getInstance().getConnection();
+            stat = conn.createStatement();
 
+            //Card Table
+            query = "Select * from card WHERE ID='" + ID + "'";
+            result = stat.executeQuery(query);
 
+            while (result.next()) {
+                if (result.getString("CardValidity").equals("Active")) {
+                    System.out.println("The card "+result.getString("Brand")+" is Active do you want to refund"
+                            + "(Y/N): ");
+                    String str = in.next();
+                    if (str.equalsIgnoreCase("Y")){
+                        query = "UPDATE customer SET WalletBalance=WalletBalance+'" + result.getDouble("CardValue") + "' WHERE ID='" + ID + "'";
+                        stat.executeUpdate(query);
+
+                        query = "DELETE FROM card WHERE CardID='" + result.getInt("CardID") + "'";
+                        stat.executeUpdate(query);
+                        System.out.println("Done");
+                        break;
+                    }
+                }
+            }
+        }catch (SQLException e){
+            System.out.println(e.getMessage());
+        }
     }
 
 }
