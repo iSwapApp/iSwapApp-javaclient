@@ -22,7 +22,7 @@ public class Card {
     private CardState state;
 
     public Card() {
-        this.state = new ActiveCardState();
+
     }
 
     // Constructor
@@ -72,7 +72,7 @@ public class Card {
     }
 
     public void hanle() {
-        this.state.handle(this);
+        this.state.handle();
     }
 
     public void payCards() {

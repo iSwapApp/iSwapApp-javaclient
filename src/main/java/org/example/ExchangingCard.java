@@ -9,6 +9,8 @@ import java.util.*;
 public class ExchangingCard {
     Scanner in = new Scanner(System.in);
     Card cd1 = new Card();
+    CardState activeCardState = new ActiveCardState();
+    CardState notActiveCardState = new NotActiveCardState();
 
     //Query(SQL)
     String query;
@@ -40,15 +42,15 @@ public class ExchangingCard {
                     cardID = result.getInt("CardID");
                     brand = result.getString("brand");
                     value = result.getDouble("CardValue");
-                    System.out.println("The brand is " + brand + " " + value);
 
+                    System.out.println("The brand is " + brand + " " + value);
+                    activeCardState.handle();
                     System.out.println("Do you want to insert this(Y/N)? ");
                     str = in.next();
 
-                    System.out.println("What is the card do you want: ");
-                    String want = in.next();
-
                     if (str.equals("Y")) {
+                        System.out.println("What is the card do you want: ");
+                        String want = in.next();
                         int rand = (int) (Math.random() * 1000);
                         query = "INSERT INTO orderlist VALUES('" + rand + "','" + brand + "','" + want + "','" + value + "','" + cardID + "','" + ID + "')";
                         stat.execute(query);
@@ -58,7 +60,7 @@ public class ExchangingCard {
                         break;
                     }
                 } else {
-                    System.out.println("Sorry, You don't have an Active card!!!");
+                    notActiveCardState.handle();
                 }
             }//End of while
         } catch (SQLException e) {
