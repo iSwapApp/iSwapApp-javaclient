@@ -109,6 +109,8 @@ public class Card {
                     System.out.println(cd1.toString());
                 }
             }//End of while
+            result.close();
+            stat.close();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -131,16 +133,22 @@ public class Card {
                             + "(Y/N): ");
                     String str = in.next();
                     if (str.equalsIgnoreCase("Y")){
+                        Statement updateStat = conn.createStatement();
                         query = "UPDATE customer SET WalletBalance=WalletBalance+'" + result.getDouble("CardValue") + "' WHERE ID='" + ID + "'";
-                        stat.executeUpdate(query);
+                        updateStat.executeUpdate(query);
 
-                        query = "DELETE FROM card WHERE CardID='" + result.getInt("CardID") + "'";
-                        stat.executeUpdate(query);
+                        query = "UPDATE card SET CardValidity='NotActive' WHERE CardID='" + result.getInt("CardID") + "'";
+                        updateStat.executeUpdate(query);
+                        updateStat.close();
                         System.out.println("Done");
                         break;
                     }
+                } else {
+                    System.out.println("You don't have ACTIVE card, POOR MAN XD.");
                 }
             }
+            result.close();
+            stat.close();
         }catch (SQLException e){
             System.out.println(e.getMessage());
         }
