@@ -1,5 +1,8 @@
 package org.example;
 
+import org.example.shopping.Card;
+import org.example.shopping.ShoppingCard;
+
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -9,6 +12,9 @@ public class App {
         Customer c1 = new Customer();
         Card cd1 = new Card();
         ExchangingCard order = new ExchangingCard();
+        ShoppingCard sc = new ShoppingCard();
+
+        Card card1 = new Card("Amazon", 100);
 
         byte choice;
         try {
@@ -26,7 +32,7 @@ public class App {
                 if (choice == 1) {
                     boolean ch = c1.check();
                     if (ch == true) {
-                        customerScreen(c1, cd1, choice, in, order);
+                        customerScreen(c1, cd1, choice, in, order, sc,card1);
                     }
                 } else if (choice == 2) {
                     c1.newAccount();
@@ -41,10 +47,10 @@ public class App {
         }
     }
 
-    public static void customerScreen(Customer c1, Card cd1, byte choice, Scanner in, ExchangingCard order) throws InputMismatchException{
+    public static void customerScreen(Customer c1, Card cd1, byte choice, Scanner in, ExchangingCard order, ShoppingCard sc, Card card1) throws InputMismatchException{
 
         System.out.println("Welcome " + c1.getName());
-        while (choice != 6) {
+        while (choice != 7) {
             System.out.println("******************************");
             System.out.println("********** iSwap App *********");
             System.out.println("******************************");
@@ -52,8 +58,9 @@ public class App {
             System.out.println("| 2.Show My Cards            |");
             System.out.println("| 3.Create Order             |");
             System.out.println("| 4.Exchange Card            |");
-            System.out.println("| 5.Refund From the Card     |");
-            System.out.println("| 6.Log out                  |");
+            System.out.println("| 5.Pay Card                 |");
+            System.out.println("| 6.Refund From the Card     |");
+            System.out.println("| 7.Log out                  |");
             System.out.println("******************************");
             System.out.println("Enter your choice: ");
             choice = in.nextByte();
@@ -67,8 +74,11 @@ public class App {
             } else if (choice == 4) {
                 order.showOrderList(c1.getID());
             } else if (choice == 5) {
-                cd1.refund(c1.getID());
+                sc.addCard(card1);
+                sc.payCard(sc);
             } else if (choice == 6) {
+                cd1.refund(c1.getID());
+            } else if (choice == 7) {
                 System.out.println("Good Bye.");
             } else {
                 System.out.println("You enter invalid choice try again!");

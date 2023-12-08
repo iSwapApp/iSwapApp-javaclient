@@ -1,5 +1,7 @@
 package org.example;
 
+import org.example.shopping.Card;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,8 +11,6 @@ import java.util.*;
 public class ExchangingCard {
     Scanner in = new Scanner(System.in);
     Card cd1 = new Card();
-    CardState activeCardState = new ActiveCardState();
-    CardState notActiveCardState = new NotActiveCardState();
 
     //Query(SQL)
     String query;
@@ -25,6 +25,7 @@ public class ExchangingCard {
     public ExchangingCard() {
     }
 
+    //This method will do only one job. Is to create a new order
     public void createOrder(int ID) {
         try {
             System.out.println("Please insert the brand card that want add to order list: ");
@@ -44,7 +45,6 @@ public class ExchangingCard {
                     value = result.getDouble("CardValue");
 
                     System.out.println("The brand is " + brand + " " + value);
-                    activeCardState.handle();
                     System.out.println("Do you want to insert this(Y/N)? ");
                     str = in.next();
 
@@ -61,8 +61,6 @@ public class ExchangingCard {
                     } else {
                         break;
                     }
-                }  else {
-                    notActiveCardState.handle();
                 }
             }//End of while
         } catch (SQLException e) {
@@ -70,6 +68,7 @@ public class ExchangingCard {
         }
     }
 
+    //This method
     public void showOrderList(int ID) {
         try {
             // query

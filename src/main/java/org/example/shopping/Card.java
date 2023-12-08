@@ -1,4 +1,7 @@
-package org.example;
+package org.example.shopping;
+
+import org.example.Customer;
+import org.example.DBConnection;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -8,7 +11,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Card {
-
     Scanner in = new Scanner(System.in);
     Customer c1 = new Customer();
 
@@ -21,13 +23,14 @@ public class Card {
     private double cardValue;
     private String cardCode;
     private String cardValidity;
-    private CardState state;
 
     public Card() {
 
     }
-
-    // Constructor
+    public Card(String brand, double cardValue){
+        this.brand=brand;
+        this.cardValue=cardValue;
+    }
     public Card(String brand, double cardValue, String cardNumber, String cardValidity) {
         this.brand = brand;
         this.cardValue = cardValue;
@@ -69,15 +72,9 @@ public class Card {
         this.cardValidity = cardValidity;
     }
 
-    public void setStat(CardState stat) {
-        this.state = state;
-    }
-
-    public void hanle() {
-        this.state.handle();
-    }
-
-    public void payCards() {
+    public String cardInfo() {
+        return "Card name: "+ this.brand + "\n"
+                +" The price is "+this.cardValue + "\n";
     }
 
     @Override
