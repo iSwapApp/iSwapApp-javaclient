@@ -11,7 +11,7 @@ We must have a unified application called (**iSwap**) that creates a gift card s
 <br/><br/>
 
 # Classes
-We have 8 classes:
+We have 10 classes:
 - **App**: This is the main class.
 - **Card**: This class  will know the details of the card and contain the following methods:
   - toString: To print card information
@@ -25,15 +25,12 @@ We have 8 classes:
 - **ExchangingCard**: This class will create orders and the method of exchanging cards between customers will be created. Contain the following methods:
   - createOrder: Orders will be made here if the customer wishes to exchange the card
   - showOrderList: Orders will be displayed here and the exchange process will be completed
-- **CardState**: This class will be interface
-- **ActiveCardState**: This class will implements form **CardState**
-- **NotActiveCardState**: This class will implements form **CardState**
 <br/><br/>
 
 # Desgin Pattern
 In This project, we use two design patterns:<br/>
 1 - **Creational Design Patterns (Singleton)**: In this design pattern we implement a database class as a **Singleton** to avoid duplicating of database.<br/><br/>
-2 - **Behavioral Design Patterns (State)**: In this design pattern we implement an StateCard class as a **State** to change the card state(Active/Not Active).<br/><br/>
+2 - **Behavioral Design Patterns (Strategy)**: In this design pattern we implement a **Payment** interface to pay a card with different payment methods.<br/><br/>
 
 # Code output
 - Login Page<br/><br/>
@@ -53,6 +50,9 @@ In This project, we use two design patterns:<br/>
 
 - Exchange card<br/><br/>
 ![image](https://github.com/iSwapApp/iSwapApp-javaclient/assets/77943208/3347ad7c-692b-4764-a18c-0c6234207fba)
+
+- Pay Card<br/><br/>
+![image](https://github.com/iSwapApp/iSwapApp-javaclient/assets/77943208/f0668402-d702-46d5-b820-3dd953392f86)
 
 - Refund From the Card<br/><br/>
 ![image](https://github.com/iSwapApp/iSwapApp-javaclient/assets/77943208/d04ee07e-b6b8-4fb9-bf6e-936e2e5e4877)
